@@ -13,15 +13,32 @@
   }
 }
 
+.offline-warning {
+  position: fixed;
+  background-color: orange;
+  color: black;
+  text-align: center;
+  padding: 10px;
+  top: 0px;
+  width: 100%;
+}
+
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App-content {
+  background-color: #282c34;
+  align-items: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-link {
