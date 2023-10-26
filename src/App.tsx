@@ -40,7 +40,7 @@ function App() {
         <div>You are {navigator.onLine === true ? "online" : "offline"}</div>
 
         <div className="data">
-          <Posts />
+          <Posts online={isOnline} />
         </div>
       </section>
     </div>

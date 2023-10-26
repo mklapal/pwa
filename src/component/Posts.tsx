@@ -3,7 +3,9 @@ import Post from "./Post";
 import { PostType } from "./Types";
 import { PostService } from "../storage/post";
 
-type PropsType = {};
+type PropsType = {
+  online: boolean;
+};
 
 function Posts(props: PropsType) {
   const [coll, setColl] = useState([] as any);
@@ -11,6 +13,14 @@ function Posts(props: PropsType) {
   const service = new PostService();
 
   useEffect(() => {
+    getData();
+  }, []);
+
+  useEffect(() => {
+    getData();
+  }, [props.online]);
+
+  function getData() {
     // get recent data
     if (navigator.onLine === true) {
       // do API call
@@ -25,8 +35,8 @@ function Posts(props: PropsType) {
         // save into database
         /*
         addPost({
-          id: 123,
-          userId: 111,
+          id: 124,
+          userId: 112,
           title: "Title",
           body: "body text body text",
         });
@@ -39,7 +49,7 @@ function Posts(props: PropsType) {
         setColl(data);
       });
     }
-  }, []);
+  }
 
   async function loadPosts() {
     try {
@@ -68,10 +78,21 @@ function Posts(props: PropsType) {
   }
 
   return (
-    <div className="post-collection">
-      {coll.map(function (item: PostType) {
-        return <Post key={item.id} model={item} />;
-      })}
+    <div>
+      <div className="post-button">
+        <button
+          onClick={() => {
+            getData();
+          }}
+        >
+          Refresh
+        </button>
+      </div>
+      <div className="post-collection">
+        {coll.map(function (item: PostType) {
+          return <Post key={item.id} model={item} />;
+        })}
+      </div>
     </div>
   );
 }
